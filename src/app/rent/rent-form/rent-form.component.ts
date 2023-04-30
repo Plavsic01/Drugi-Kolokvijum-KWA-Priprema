@@ -28,7 +28,8 @@ export class RentFormComponent {
     userId:new FormControl(null,Validators.required),
     bookId:new FormControl(null,Validators.required),
     rentDate:new FormControl(null,Validators.required),
-    returnDate:new FormControl(null,Validators.required),
+    // returnDate:new FormControl(null,Validators.required),
+    returnDate:new FormControl(),
     state:new FormControl(null,Validators.required),
     price:new FormControl(null,Validators.required)    
   },

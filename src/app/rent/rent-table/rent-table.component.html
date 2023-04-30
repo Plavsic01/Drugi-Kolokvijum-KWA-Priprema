@@ -14,7 +14,7 @@
     
     <tbody *ngIf="loginService.user['roles'].includes('ROLE_USER');else adminRents">        
         <tr *ngFor="let rent of rents">
-            <ng-container *ngIf="rent.userId == loginService.user['id']">
+            <ng-container [appProveraVracanja]="rent" *ngIf="rent.userId == loginService.user['id']">
             <td>{{rent.id}}</td>
             <td>{{rent.userId}}</td>
             <td>{{rent.bookId}}</td>
@@ -28,7 +28,7 @@
 </table>
 
 <ng-template #adminRents>
-    <tr *ngFor="let rent of rents">
+    <tr [appProveraVracanja]="rent" *ngFor="let rent of rents">
         <td>{{rent.id}}</td>
         <td>{{rent.userId}}</td>
         <td>{{rent.bookId}}</td>

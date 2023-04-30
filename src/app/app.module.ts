@@ -19,6 +19,7 @@ import { RentPrikazComponent } from './rent/rent-prikaz/rent-prikaz.component';
 import { RentEditorComponent } from './rent/rent-editor/rent-editor.component';
 import { LoginComponent } from './login/login/login.component';
 import { LoginInterceptor } from './interceptor/login.interceptor';
+import { ProveraVracanjaDirective } from './directive/provera-vracanja.directive';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { LoginInterceptor } from './interceptor/login.interceptor';
     RentFormComponent,
     RentPrikazComponent,
     RentEditorComponent,
-    LoginComponent  
+    LoginComponent,
+    ProveraVracanjaDirective  
     
   ],
   imports: [
