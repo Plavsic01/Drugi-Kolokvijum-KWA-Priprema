@@ -1,0 +1,20 @@
+<form action="" (submit)="create()" [formGroup]="formaBook">
+    <div>
+        <label>Title:</label>
+        <input type="text" name="title" id="title" formControlName="title">
+    </div>
+    <div>
+        <label>Author:</label>
+        <input type="text" name="author" id="author" formControlName="author">
+    </div>
+    <div>
+        <label>Genre:</label>
+        <input type="text" name="genre" id="genre" formControlName="genre">
+    </div>
+
+    <div>
+        <button type="submit">{{ formaBook.get("id")?.value == undefined ? 'dodaj' : 'izmeni'}}</button>
+        <button (click)="reset()" type="button">Reset</button>
+        
+    </div>
+</form>

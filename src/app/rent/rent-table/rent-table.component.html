@@ -1,0 +1,46 @@
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>UserId</th>
+            <th>BookId</th> 
+            <th>Rent Date</th>
+            <th>Return Date</th>
+            <th>State</th>
+            <th>Price</th>
+            <th *ngIf="loginService.user['roles'].includes('ROLE_ADMIN')">Akcije</th> 
+        </tr>
+    </thead>
+    
+    <tbody *ngIf="loginService.user['roles'].includes('ROLE_USER');else adminRents">        
+        <tr *ngFor="let rent of rents">
+            <ng-container *ngIf="rent.userId == loginService.user['id']">
+            <td>{{rent.id}}</td>
+            <td>{{rent.userId}}</td>
+            <td>{{rent.bookId}}</td>
+            <td>{{rent.rentDate}}</td>
+            <td>{{rent.returnDate}}</td>
+            <td>{{rent.state}}</td>
+            <td>{{rent.price}}</td>                    
+        </ng-container>
+        </tr>
+    </tbody>
+</table>
+
+<ng-template #adminRents>
+    <tr *ngFor="let rent of rents">
+        <td>{{rent.id}}</td>
+        <td>{{rent.userId}}</td>
+        <td>{{rent.bookId}}</td>
+        <td>{{rent.rentDate}}</td>
+        <td>{{rent.returnDate}}</td>
+        <td>{{rent.state}}</td>
+        <td>{{rent.price}}</td>
+        <td>                
+            <a [routerLink]="['/izmena-rent',rent.id]">Izmeni</a>
+            <button (click)="ukloni(rent.id)">Ukloni</button>                                 
+        </td>
+    </tr> 
+</ng-template>
+
+

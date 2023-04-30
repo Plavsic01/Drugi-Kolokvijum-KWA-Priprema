@@ -1,0 +1,34 @@
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Author</th> 
+            <th>Genre</th>           
+            <th *ngIf="loginService.user['roles'].includes('ROLE_ADMIN')">Akcije</th> 
+        </tr>
+    </thead>
+
+    <tbody *ngIf="loginService.user['roles'].includes('ROLE_USER');else adminRole">
+        <tr *ngFor="let book of books">
+            <td>{{book.id}}</td>
+            <td>{{book.title}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.genre}}</td>            
+        </tr>
+    </tbody>
+</table>
+
+<ng-template #adminRole>
+    <tr *ngFor="let book of books">
+        <td>{{book.id}}</td>
+        <td>{{book.title}}</td>
+        <td>{{book.author}}</td>
+        <td>{{book.genre}}</td>
+        <td>            
+            <a [routerLink]="['/izmena-book',book.id]">Izmeni</a>
+            <button (click)="ukloni(book.id)">Ukloni</button>                                 
+        </td>
+    </tr>
+</ng-template>
+

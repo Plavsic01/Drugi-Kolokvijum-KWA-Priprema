@@ -1,0 +1,25 @@
+<form action="" (submit)="create()" [formGroup]="formaUser">
+    <div>
+        <label>Username:</label>
+        <input type="text" name="username" id="username" formControlName="username">
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type="text" name="password" id="password" formControlName="password">
+    </div>
+
+    <div>
+        <label>Roles:</label>
+        <select formControlName="roles">
+            <option disabled>Izaberi Role</option>
+            <option value="ROLE_USER">ROLE_USER</option>
+            <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+        </select>
+    </div>
+
+    <div>
+        <button type="submit">{{ formaUser.get("id")?.value == undefined ? 'dodaj' : 'izmeni'}}</button>
+        <button (click)="reset()" type="button">Reset</button>
+        
+    </div>
+</form>

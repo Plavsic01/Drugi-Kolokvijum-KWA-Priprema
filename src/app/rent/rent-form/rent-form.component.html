@@ -1,0 +1,53 @@
+<form action="" (submit)="create()" [formGroup]="formaRent">
+
+    <div>
+    <label>User Id:</label>
+    <select name="userId" formControlName="userId">
+        <option value="" disabled>Izaberi Usera</option>
+        <option *ngFor="let user of users" [value]="user.id">
+            {{user.id}}
+        </option>
+    </select>
+    </div>
+
+    <div>
+    <label>Book Id:</label>
+    <select name="bookId" formControlName="bookId">
+        <option value="" disabled>Izaberi Book</option>
+        <option *ngFor="let book of books" [value]="book.id">
+            {{book.id}}
+        </option>
+    </select>
+    </div>
+
+    <div>
+        <label>Rent Date:</label>
+        <input type="date" name="rentDate" id="rentDate" formControlName="rentDate">
+    </div>
+
+    <div>
+        <label>Return Date:</label>
+        <input type="date" name="returnDate" id="returnDate" formControlName="returnDate">
+    </div>
+    
+    <div>
+        <label>State:</label>
+        <select formControlName="state">
+            <option disabled>Izaberi State</option>
+            <option value="returned">Returned</option>
+            <option value="borrowed">Borrowed</option>
+        </select>
+    </div>
+    <div>
+        <label>Price:</label>
+        <input type="number" name="price" id="price" formControlName="price">
+    </div>
+
+    
+
+    <div>
+        <button type="submit">{{ formaRent.get("id")?.value == undefined ? 'dodaj' : 'izmeni'}}</button>
+        <button (click)="reset()" type="button">Reset</button>
+        
+    </div>
+</form>
