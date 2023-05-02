@@ -25,7 +25,7 @@ export class ProveraVracanjaDirective implements OnChanges {
     }
   
     if(changes['appProveraVracanja'].currentValue.returnDate == '' ||
-      returnDate == null || returnDate > currDate){       
+    changes['appProveraVracanja'].currentValue.returnDate == null || (returnDate != null && returnDate > currDate)){       
       // Koristimo ovaj pristup zato sto ne zelimo da direktiva prolazi kroz sve rents objekte
       // vec samo kroz one koji se prikazuju obicnom useru (ROLE_USER)
 

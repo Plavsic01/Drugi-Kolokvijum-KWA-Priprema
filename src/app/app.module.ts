@@ -20,6 +20,9 @@ import { RentEditorComponent } from './rent/rent-editor/rent-editor.component';
 import { LoginComponent } from './login/login/login.component';
 import { LoginInterceptor } from './interceptor/login.interceptor';
 import { ProveraVracanjaDirective } from './directive/provera-vracanja.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { KorpaTableComponent } from './korpa/korpa-table/korpa-table.component';
 
 @NgModule({
   declarations: [
@@ -37,14 +40,17 @@ import { ProveraVracanjaDirective } from './directive/provera-vracanja.directive
     RentPrikazComponent,
     RentEditorComponent,
     LoginComponent,
-    ProveraVracanjaDirective  
+    ProveraVracanjaDirective,
+    KorpaTableComponent  
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule    
+    HttpClientModule,
+    BrowserAnimationsModule,
+    DragDropModule
   ],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:LoginInterceptor,multi:true}],
   bootstrap: [AppComponent]

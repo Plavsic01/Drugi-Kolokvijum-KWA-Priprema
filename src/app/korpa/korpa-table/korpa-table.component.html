@@ -1,0 +1,19 @@
+<table cdkDropList [cdkDropListData]="korpa" (cdkDropListDropped)="onDrop($event)">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Author</th> 
+            <th>Genre</th>                     
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let book of korpa" cdkDrag>
+            <td>{{book.id}}</td>
+            <td>{{book.title}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.genre}}</td>
+        </tr>        
+    </tbody>
+</table>

@@ -1,4 +1,54 @@
-<table>
+<ng-container *ngIf="loginService.user['roles'].includes('ROLE_USER'); else admin">
+    <table cdkDropList [cdkDropListData]="books" (cdkDropListDropped)="onDrop($event)">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Author</th> 
+                <th>Genre</th>                           
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let book of books" cdkDrag>
+                <td>{{book.id}}</td>
+                <td>{{book.title}}</td>
+                <td>{{book.author}}</td>
+                <td>{{book.genre}}</td>            
+            </tr>
+        </tbody>
+    </table>
+</ng-container>
+
+
+<ng-template #admin>
+<table cdkDropList [cdkDropListData]="books" (cdkDropListDropped)="onDrop($event)">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Author</th> 
+            <th>Genre</th>           
+            <th>Akcije</th> 
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let book of books" cdkDrag>
+            <td>{{book.id}}</td>
+            <td>{{book.title}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.genre}}</td>
+            <td>            
+                <a [routerLink]="['/izmena-book',book.id]">Izmeni</a>
+                <button (click)="ukloni(book.id)">Ukloni</button>                                 
+            </td>
+        </tr>
+    </tbody>
+</table>
+</ng-template>
+
+<!-- <table cdkDropList [cdkDropListData]="books" (cdkDropListDropped)="onDrop($event)">
     <thead>
         <tr>
             <th>Id</th>
@@ -10,25 +60,27 @@
     </thead>
 
     <tbody *ngIf="loginService.user['roles'].includes('ROLE_USER');else adminRole">
-        <tr *ngFor="let book of books">
+        <tr *ngFor="let book of books" cdkDrag>
             <td>{{book.id}}</td>
             <td>{{book.title}}</td>
             <td>{{book.author}}</td>
             <td>{{book.genre}}</td>            
         </tr>
     </tbody>
-</table>
+</table> -->
 
-<ng-template #adminRole>
-    <tr *ngFor="let book of books">
-        <td>{{book.id}}</td>
-        <td>{{book.title}}</td>
-        <td>{{book.author}}</td>
-        <td>{{book.genre}}</td>
-        <td>            
-            <a [routerLink]="['/izmena-book',book.id]">Izmeni</a>
-            <button (click)="ukloni(book.id)">Ukloni</button>                                 
-        </td>
-    </tr>
-</ng-template>
 
+<!-- <ng-template #adminRole>    
+    <tbody cdkDropList [cdkDropListData]="books" (cdkDropListDropped)="onDrop($event)">
+        <tr *ngFor="let book of books" cdkDrag>
+            <td>{{book.id}}</td>
+            <td>{{book.title}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.genre}}</td>
+            <td>            
+                <a [routerLink]="['/izmena-book',book.id]">Izmeni</a>
+                <button (click)="ukloni(book.id)">Ukloni</button>                                 
+            </td>
+        </tr>
+    </tbody>    
+</ng-template> -->

@@ -1,1 +1,5 @@
-<app-book-table [books]="books" (ukloniEvent)="ukloniBook($event)"></app-book-table>
+<div cdkDropListGroup>
+    <app-book-table [books]="books" (ukloniEvent)="ukloniBook($event)"></app-book-table>
+    <br>
+    <app-korpa-table></app-korpa-table>
+</div>
