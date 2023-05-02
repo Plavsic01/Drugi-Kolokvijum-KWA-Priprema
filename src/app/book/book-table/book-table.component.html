@@ -1,4 +1,4 @@
-<ng-container *ngIf="loginService.user['roles'].includes('ROLE_USER'); else admin">
+<!-- <ng-container *ngIf="loginService.user['roles'].includes('ROLE_USER'); else admin">
     <table cdkDropList [cdkDropListData]="books" (cdkDropListDropped)="onDrop($event)">
         <thead>
             <tr>
@@ -47,6 +47,14 @@
     </tbody>
 </table>
 </ng-template>
+ -->
+
+
+
+
+
+
+
 
 <!-- <table cdkDropList [cdkDropListData]="books" (cdkDropListDropped)="onDrop($event)">
     <thead>
@@ -67,11 +75,11 @@
             <td>{{book.genre}}</td>            
         </tr>
     </tbody>
-</table> -->
+</table>
 
 
-<!-- <ng-template #adminRole>    
-    <tbody cdkDropList [cdkDropListData]="books" (cdkDropListDropped)="onDrop($event)">
+<ng-template #adminRole>    
+    <tbody>
         <tr *ngFor="let book of books" cdkDrag>
             <td>{{book.id}}</td>
             <td>{{book.title}}</td>
@@ -84,3 +92,39 @@
         </tr>
     </tbody>    
 </ng-template> -->
+
+
+<table cdkDropList [cdkDropListData]="books" (cdkDropListDropped)="onDrop($event)">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Author</th> 
+            <th>Genre</th>           
+            <th *ngIf="loginService.user['roles'].includes('ROLE_ADMIN')">Akcije</th> 
+        </tr>
+    </thead>
+        
+    <tbody *ngIf="loginService.user['roles'].includes('ROLE_USER')">
+        <tr *ngFor="let book of books" cdkDrag>
+            <td>{{book.id}}</td>
+            <td>{{book.title}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.genre}}</td>            
+        </tr>
+    </tbody>    
+
+    <tbody *ngIf="loginService.user['roles'].includes('ROLE_ADMIN')">
+        <tr *ngFor="let book of books" cdkDrag>
+            <td>{{book.id}}</td>
+            <td>{{book.title}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.genre}}</td>   
+            <td>            
+                <a [routerLink]="['/izmena-book',book.id]">Izmeni</a>
+                <button (click)="ukloni(book.id)">Ukloni</button>                                 
+            </td>         
+        </tr>
+    </tbody>
+</table>
+
